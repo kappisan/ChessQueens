@@ -1,0 +1,20 @@
+<!-- HOME -->
+<center>
+<div style="height: 800px; margin: 100px;"><h2 style="color: #000;">8 Queens</h2>
+
+	<h3>Size {{ boardSize }}</h3>
+	<input type="range" min="4" max="24" step="1" ng-model="boardSize" ng-change="renderBoard(boardSize)">
+	<br><br>
+
+	<div class="board">
+		<div ng-repeat='row in board track by $index'>
+			<span ng-repeat='column in row track by $index' class="square" ng-class="{queen: column == 1}">
+				<img ng-if="column" src="./img/queen.png">
+			</span>
+		</div>
+	</div>
+
+	<button class="solve-button" ng-click="guess()">Guess!</button>
+
+</div>
+</center>

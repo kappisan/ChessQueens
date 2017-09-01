@@ -48,11 +48,59 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 			indexes = nextIndex.array;
 			var num = nextIndex.val;
 			console.log(x, num);
-
 			$s.board[x][num] = "1";
-
 		}
 
+		$s.check();
+	}
+
+	$s.check = function() {
+		console.log("check board", $s.board);
+		var d1 = diagonal($s.board, false);
+		var d2 = diagonal($s.board, true);
+
+		console.log("check diagonal", d1, d2);
+
+		var passed = true;
+
+		d1.forEach(function(string) {
+			var occurences = string.length - string.replace(/1/g, "").length;
+			console.log(string, occurences);
+			if(occurences > 1) { passed = false; }
+		});
+
+		d2.forEach(function(string) {
+			var occurences = string.length - string.replace(/1/g, "").length;
+			console.log(string, occurences);
+			if(occurences > 1) { passed = false; }
+		});
+
+		console.log("have I passed?", passed);
+
+		if(!passed) { $s.guess(); }
+
+		return;
+	}
+
+	function diagonal(array, bottomToTop) {
+	    var Ylength = array.length;
+	    var Xlength = array[0].length;
+	    var maxLength = Math.max(Xlength, Ylength);
+	    var temp;
+	    var returnArray = [];
+	    for (var k = 0; k <= 2 * (maxLength - 1); ++k) {
+	        temp = [];
+	        for (var y = Ylength - 1; y >= 0; --y) {
+	            var x = k - (bottomToTop ? Ylength - y : y);
+	            if (x >= 0 && x < Xlength) {
+	                temp.push(array[y][x]);
+	            }
+	        }
+	        if(temp.length > 0) {
+	            returnArray.push(temp.join(''));
+	        }
+	    }
+	    return returnArray;
 	}
 
 	function randomFromArray(array) {

@@ -11,43 +11,39 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 
 	console.log("page controller", $location.$$path);
 	$s.boardSize = 4;
+	$s.timeTaken = 0;
 
 	$s.renderBoard = function(size) {
 		size = size || $s.boardSize;
 		$s.boardSize = size;
 		$s.board = [];
-		$s.columnIndexes = [];
+		columnIndexes = [];
 
 		for(var x = 0; x < size; x++) {
 			$s.board[x] = [];
-			$s.columnIndexes.push(x);
+			columnIndexes.push(x);
 			for(var y = 0; y < size; y++) {
 				$s.board[x].push("0");
 			}
 		}
 
-		console.log("$s.board", $s.board);
-		console.log("$s.columnIndexes", $s.columnIndexes);
+		// console.log("$s.board", $s.board);
+		// console.log("columnIndexes", columnIndexes);
 	}
 
 	$s.guess = function() {
 
 		$s.renderBoard();
 
-		console.log("guessing $s.board", $s.board);
-		var size = $s.columnIndexes.length;
-		var indexes = $s.columnIndexes;
-
-
-		console.log("indexes", indexes);
+		var size = columnIndexes.length;
+		var indexes = columnIndexes;
 
 		for(var x = 0; x < size; x++) {
 			
 			var nextIndex = randomFromArray(indexes);
-			console.log("nextIndex;", nextIndex);
 			indexes = nextIndex.array;
 			var num = nextIndex.val;
-			console.log(x, num);
+			// console.log(x, num);
 			$s.board[x][num] = "1";
 		}
 
@@ -55,23 +51,21 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 	}
 
 	$s.check = function() {
-		console.log("check board", $s.board);
 		var d1 = diagonal($s.board, false);
 		var d2 = diagonal($s.board, true);
-
-		console.log("check diagonal", d1, d2);
+		// console.log("check diagonal", d1, d2);
 
 		var passed = true;
 
 		d1.forEach(function(string) {
+			// console.log(string, occurences);
 			var occurences = string.length - string.replace(/1/g, "").length;
-			console.log(string, occurences);
 			if(occurences > 1) { passed = false; }
 		});
 
 		d2.forEach(function(string) {
+			// console.log(string, occurences);
 			var occurences = string.length - string.replace(/1/g, "").length;
-			console.log(string, occurences);
 			if(occurences > 1) { passed = false; }
 		});
 

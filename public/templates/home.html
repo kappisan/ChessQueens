@@ -1,9 +1,10 @@
 <!-- HOME -->
 <center>
-<div style="height: 800px; margin: 100px;"><h2 style="color: #000;">8 Queens</h2>
+<div style="margin: 100px;"><h2 style="color: #000;">8 Queens</h2>
 
-	<h3>Size {{ boardSize }}</h3>
-	<input type="range" min="4" max="24" step="1" ng-model="boardSize" ng-change="renderBoard(boardSize)">
+	<h3>Time Taken: {{ timeTaken }}</h3>
+	<h3>Size: {{ boardSize }}</h3>
+	<input type="range" min="4" max="14" step="1" ng-model="boardSize" ng-change="renderBoard(boardSize)">
 	<br><br>
 
 	<div class="board">

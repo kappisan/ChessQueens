@@ -31,6 +31,12 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		// console.log("columnIndexes", columnIndexes);
 	}
 
+
+	var start = new Date();
+	$s.startTimer = function() {
+		start = new Date();
+	}
+
 	$s.guess = function() {
 
 		$s.renderBoard();
@@ -48,6 +54,8 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		}
 
 		$s.check();
+		var end = new Date();
+		$s.timeTaken = (end - start) / 1000;
 	}
 
 	$s.check = function() {

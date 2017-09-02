@@ -37,7 +37,17 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		start = new Date();
 	}
 
-	$s.guess = function() {
+	$s.startGuessing = function() {
+		console.log("start guessing");
+		try {
+			guess();
+		} catch(e) {
+			console.log("couldn't find it");
+			$s.renderBoard();
+		}
+	}
+
+	function guess() {
 
 		$s.renderBoard();
 
@@ -53,12 +63,12 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 			$s.board[x][num] = "1";
 		}
 
-		$s.check();
+		check();
 		var end = new Date();
 		$s.timeTaken = (end - start) / 1000;
 	}
 
-	$s.check = function() {
+	function check() {
 		var d1 = diagonal($s.board, false);
 		var d2 = diagonal($s.board, true);
 		// console.log("check diagonal", d1, d2);
@@ -79,7 +89,7 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 
 		console.log("have I passed?", passed);
 
-		if(!passed) { $s.guess(); }
+		if(!passed) { guess(); }
 
 		return;
 	}

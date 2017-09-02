@@ -181,7 +181,16 @@ p {
     min-height: 200px; 
     color: #fff;
     padding: 20px;
-}    
+}
+
+.stats {
+    width: 320px;
+    text-align: left;
+}
+
+.stats input {
+    width: 100%;
+}
 
 .third-section {
     background-image: url(../img/coding-bg.png);
@@ -231,7 +240,7 @@ p {
 
 #container {
     background-color: #eee;
-    height: 1000px;
+    height: 1100px;
 }
 
 .square {

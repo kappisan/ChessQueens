@@ -26,30 +26,38 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 				$s.board[x].push("0");
 			}
 		}
-
 		// console.log("$s.board", $s.board);
 		// console.log("columnIndexes", columnIndexes);
 	}
 
 
 	var start = new Date();
+	$s.numberGuesses = 0;
 	$s.startTimer = function() {
 		start = new Date();
+		$s.numberGuesses = 0;
 	}
 
 	$s.startGuessing = function() {
-		console.log("start guessing");
 		try {
 			guess();
 		} catch(e) {
 			console.log("couldn't find it");
 			$s.renderBoard();
+            swal({
+                title: "Error",
+                type: "error",
+                text: "Ran out of memory looking for solution!",
+                timer: 3000,
+                showConfirmButton: false
+            });
 		}
 	}
 
 	function guess() {
 
 		$s.renderBoard();
+		$s.numberGuesses++;
 
 		var size = columnIndexes.length;
 		var indexes = columnIndexes;
@@ -87,11 +95,9 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 			if(occurences > 1) { passed = false; }
 		});
 
-		console.log("have I passed?", passed);
+		if(!passed) { return guess(); }
 
-		if(!passed) { guess(); }
-
-		return;
+		return console.log("Solution Found!", passed);
 	}
 
 	function diagonal(array, bottomToTop) {

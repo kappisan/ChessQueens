@@ -1,10 +1,13 @@
 <!-- HOME -->
 <center>
-<div style="margin: 100px;"><h2 style="color: #000;">8 Queens</h2>
+<div style="margin: 120px;"><h2 style="color: #000;">Chess Queens</h2>
 
-	<h3>Time Taken: {{ timeTaken }} s</h3>
-	<h3>Size: {{ boardSize }} x {{ boardSize }}</h3>
-	<input type="range" min="4" max="12" step="1" ng-model="boardSize" ng-change="renderBoard(boardSize)">
+	<div class="stats">
+		<h3>Attempts: {{ numberGuesses }}</h3>
+		<h3>Time Taken: {{ timeTaken }} s</h3>
+		<h3>Size: {{ boardSize }} x {{ boardSize }}</h3>
+		<input type="range" min="4" max="12" step="1" ng-model="boardSize" ng-change="renderBoard(boardSize)">
+	</div>
 	<br><br>
 
 	<div class="board">

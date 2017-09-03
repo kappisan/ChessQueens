@@ -1,15 +1,30 @@
 {
-  "name": "boilerplate",
+  "name": "KappisanChessQueens",
   "version": "1.0.0",
-  "description": "",
+  "description": "Chess queen placement solver",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "Kasper Wilkosz",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kappisan/ChessQueens.git"
+  },
+  "keywords": [
+    "chess",
+    "queen",
+    "problem",
+    "solve"
+  ],
+  "bugs": {
+    "url": "https://github.com/kappisan/ChessQueens/issues"
+  },
+  "homepage": "https://github.com/kappisan/ChessQueens#readme"
 }

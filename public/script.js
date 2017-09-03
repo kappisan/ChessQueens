@@ -5,12 +5,11 @@ var app = angular.module('app', ['ngRoute'])
 			.otherwise({ redirectTo: '/' });
 	}]);
 
-
 // CONTROLLERS
 app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, $location) {
 
 	console.log("page controller", $location.$$path);
-	$s.boardSize = 4;
+	$s.boardSize = 8;
 	$s.timeTaken = 0;
 
 	$s.renderBoard = function(size) {
@@ -27,9 +26,7 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 			}
 		}
 		// console.log("$s.board", $s.board);
-		// console.log("columnIndexes", columnIndexes);
 	}
-
 
 	var start = new Date();
 	$s.numberGuesses = 0;
@@ -84,13 +81,11 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		var passed = true;
 
 		d1.forEach(function(string) {
-			// console.log(string, occurences);
 			var occurences = string.length - string.replace(/1/g, "").length;
 			if(occurences > 1) { passed = false; }
 		});
 
 		d2.forEach(function(string) {
-			// console.log(string, occurences);
 			var occurences = string.length - string.replace(/1/g, "").length;
 			if(occurences > 1) { passed = false; }
 		});
@@ -131,5 +126,3 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 	$s.renderBoard($s.boardSize);
 
 }]);
-
-

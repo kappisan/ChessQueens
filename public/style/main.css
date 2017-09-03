@@ -50,7 +50,7 @@ h1, h2 {
 }
 
 p {
-    font-size: 26px;
+    font-size: 18px;
     text-align: justify;
     margin: 60px 0;
 }
@@ -240,7 +240,7 @@ p {
 
 #container {
     background-color: #eee;
-    height: 1100px;
+    height: 1300px;
 }
 
 .square {

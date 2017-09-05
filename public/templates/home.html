@@ -20,7 +20,7 @@
 			<div ng-repeat='row in board track by $index' ng-init="rowIndex = $index">
 				<span ng-repeat='column in row track by $index' 
 					  class="square" 
-					  ng-class="{queen: column == 1}"
+					  ng-class="{queen: column == 1, attackqueen: column == 2}"
 					  ng-click="toggleQueen(rowIndex, $index)">
 					<img ng-if="column" src="./img/queen.png">
 				</span>

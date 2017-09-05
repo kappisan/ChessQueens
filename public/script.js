@@ -5,6 +5,14 @@ var app = angular.module('app', ['ngRoute'])
 			.otherwise({ redirectTo: '/' });
 	}]);
 
+/** 
+	CODES
+	0 BLANK
+	1 QUEEN
+	2 ATTACKING QUEEN
+**/
+
+
 // CONTROLLERS
 app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, $location) {
 
@@ -29,12 +37,12 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 	}
 
 	$s.toggleQueen = function(row, column) {
-		console.log("toggleQueen", row, column);
-		if ($s.board[row][column] === "1") {
+		if ($s.board[row][column] === "1" || $s.board[row][column] === "2") {
 			$s.board[row][column] = "0";
 		} else {
 			$s.board[row][column] = "1";
 		}
+		checkEntireBoard();
 	}
 
 	var start = new Date();
@@ -57,6 +65,43 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
                 timer: 3000,
                 showConfirmButton: false
             });
+		}
+	}
+
+	function checkEntireBoard() {
+
+		// ROWS
+		for(var i = 0; i < $s.boardSize; i++) {
+			// turn all previous red green
+			$s.board[i] = _.map($s.board[i], function(s) {
+				if(s === "1" || s === "2") { return "1"; }
+				return "0";
+			});
+			if(queensInArray($s.board[i]) > 1) {
+				// console.log('conflict!', $s.board[i]);
+				$s.board[i] = _.map($s.board[i], function(s) {
+					if(s === "1" || s === "2") { return "2"; }
+					return "0";
+				});
+			}
+		}
+
+		// COLUMNS
+		for(var x = 0; x < $s.boardSize; x++) {
+			var columnArray = [];
+			for(var y = 0; y < $s.boardSize; y++) {
+				columnArray.push($s.board[y][x]);	
+			}
+			console.log("columnArray", queensInArray(columnArray), columnArray);
+			if(queensInArray(columnArray) > 1) {
+				console.log("column conflict");
+				
+				for(var y = 0; y < $s.boardSize; y++) {
+					if($s.board[y][x] == "1" || $s.board[y][x] == "2") {
+						$s.board[y][x] = "2";
+					}
+				}
+			}
 		}
 	}
 
@@ -130,6 +175,16 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		var remVal = array[remInx];
 		array.splice(remInx, 1);
 		return {val: remVal, array: array}
+	}
+
+	function queensInArray(array) {
+	    var count = 0;
+	    for (var i = 0; i < array.length; i++) {
+	        if (array[i] === "1" || array[i] === "2") {
+	            count++;
+	        }
+	    }
+	    return count;
 	}
 
 	$s.renderBoard($s.boardSize);

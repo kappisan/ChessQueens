@@ -182,7 +182,12 @@ p {
     background-color: #0a0;
 }
 
-.queen img {
+.attackqueen {
+    background-color: #a00;
+}
+
+.queen img,
+.attackqueen img {
     width: 30px; 
     position: relative;
     top: 10px;

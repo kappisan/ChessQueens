@@ -1,32 +1,38 @@
 <!-- HOME -->
 <center>
-<div style="margin: 120px;"><h2 style="color: #000;">Chess Queens</h2>
+	<div style="margin: 120px;">
 
-	<div class="text-container">
-		<p>The eight queens puzzle is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle">Click here to read more about it.</a> This program finds solutions for n queens on an n by n sized board.</p>
-	</div>
+		<h2>Chess Queens</h2>
 
-	<div class="stats">
-		<h3>Attempts: {{ numberGuesses }}</h3>
-		<h3>Time Taken: {{ timeTaken }} s</h3>
-		<h3>Size: {{ boardSize }} x {{ boardSize }}</h3>
-		<input type="range" min="4" max="12" step="1" ng-model="boardSize" ng-change="renderBoard(boardSize)">
-	</div>
-	<br><br>
-
-	<div class="board">
-		<div ng-repeat='row in board track by $index'>
-			<span ng-repeat='column in row track by $index' class="square" ng-class="{queen: column == 1}">
-				<img ng-if="column" src="./img/queen.png">
-			</span>
+		<div class="text-container">
+			<p>The eight queens puzzle is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle">Click here to read more about it.</a> This program finds solutions for n queens on an n by n sized board.</p>
 		</div>
-	</div>
 
-	<button class="solve-button" ng-click="startTimer(); startGuessing()">Guess!</button>
-	
-	<div class="text-container" style="margin-top: 40px;">
-		<p>Source code can be found on github by clicking <a href="https://github.com/kappisan/ChessQueens">here.</a></p>
-	</div>
+		<div class="stats">
+			<h3>Attempts: {{ numberGuesses }}</h3>
+			<h3>Time Taken: {{ timeTaken }} s</h3>
+			<h3>Size: {{ boardSize }} x {{ boardSize }}</h3>
+			<input type="range" min="4" max="12" step="1" ng-model="boardSize" ng-change="renderBoard(boardSize)">
+		</div>
+		<br><br>
 
-</div>
+		<div class="board">
+			<div ng-repeat='row in board track by $index' ng-init="rowIndex = $index">
+				<span ng-repeat='column in row track by $index' 
+					  class="square" 
+					  ng-class="{queen: column == 1}"
+					  ng-click="toggleQueen(rowIndex, $index)">
+					<img ng-if="column" src="./img/queen.png">
+				</span>
+			</div>
+		</div>
+
+		<button class="solve-button" ng-click="startTimer(); startGuessing()">Find Solution</button>
+		<button class="solve-button" ng-click="renderBoard()">Clear</button>
+
+		<div class="text-container" style="margin-top: 40px;">
+			<p>Source code can be found on github by clicking <a href="https://github.com/kappisan/ChessQueens">here.</a></p>
+		</div>
+
+	</div>
 </center>

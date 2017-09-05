@@ -28,6 +28,15 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		// console.log("$s.board", $s.board);
 	}
 
+	$s.toggleQueen = function(row, column) {
+		console.log("toggleQueen", row, column);
+		if ($s.board[row][column] === "1") {
+			$s.board[row][column] = "0";
+		} else {
+			$s.board[row][column] = "1";
+		}
+	}
+
 	var start = new Date();
 	$s.numberGuesses = 0;
 	$s.startTimer = function() {

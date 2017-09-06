@@ -20,7 +20,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    color: #231f20;
+    background-color: #eee;
 }
 
 a {
@@ -43,7 +43,7 @@ a:visited {
 }
 
 h1, h2 {
-    padding: 30px 0;
+    padding: 20px 0 10px 0;
     font-family: luna;
 }
 
@@ -62,7 +62,7 @@ p {
     top: 0;
     right: 0;
     width: 100%;
-    position: fixed;
+    position: relative;
     background-color: #231f20;
     z-index: 99;
 }
@@ -165,8 +165,6 @@ p {
 }
 
 #container {
-    background-color: #eee;
-    height: 1300px;
 }
 
 .square {

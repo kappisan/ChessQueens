@@ -34,6 +34,12 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		}
 	}
 
+	$s.clear = function(size) {
+		$s.renderBoard();
+		$s.numberGuesses = 0;
+		$s.timeTaken = 0;
+	}
+
 	$s.renderBoard = function(size) {
 		size = size || $s.boardSize;
 		$s.boardSize = size;

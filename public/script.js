@@ -78,7 +78,7 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 				return "0";
 			});
 			if(queensInArray($s.board[i]) > 1) {
-				// console.log('conflict!', $s.board[i]);
+				// console.log('row conflict');
 				$s.board[i] = _.map($s.board[i], function(s) {
 					if(s === "1" || s === "2") { return "2"; }
 					return "0";
@@ -92,7 +92,7 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 			for(var y = 0; y < $s.boardSize; y++) {
 				columnArray.push($s.board[y][x]);	
 			}
-			console.log("columnArray", queensInArray(columnArray), columnArray);
+			// console.log("columnArray", queensInArray(columnArray), columnArray);
 			if(queensInArray(columnArray) > 1) {
 				console.log("column conflict");
 				
@@ -103,6 +103,68 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 				}
 			}
 		}
+
+		// DIAGONALS 1 BOTTOM LEFT TO TOP RIGHT
+		var d1 = diagonal($s.board, false);
+		d1.forEach(function(string, index) {
+			var occurences = string.length - string.replace(/1/g, "").length;
+			// console.log(index, "occurences", occurences, string);
+
+			if(occurences > 1) { 
+				console.log("conflict!", index);
+				var cursor;
+				if(index < $s.boardSize) {
+					// console.log("top left corner");
+					cursor = index;
+					for(var i = 0; i <= index; i++) {
+						console.log("turn square", i, cursor);
+						if($s.board[i][cursor] != "0") { $s.board[i][cursor] = "2"; }
+						cursor--;
+					}
+				} else {
+					console.log("bottom right corner");
+					cursor = $s.boardSize - 1;
+					var diff = (($s.boardSize * 2) - 2) - index;
+					for(var i = (index - $s.boardSize) + 1; i <= (index - $s.boardSize) + 1 + diff; i++) {
+						// console.log("turn square", cursor, i);
+						if($s.board[i][cursor] != "0") { $s.board[i][cursor] = "2"; }
+						cursor--;
+					}
+				}
+			}
+		});
+
+		// DIAGONALS 2 BOTTOM RIGHT TO TOP LEFT
+		console.log("diagonal 2");
+		var d2 = diagonal($s.board, true);
+		d2.forEach(function(string, index) {
+			var occurences = string.length - string.replace(/1/g, "").length;
+			// if(occurences > 1) { passed = false; }
+			console.log("d2", index, "occurences", occurences, string);
+
+			if(occurences > 1) { 
+				console.log("conflict!", index);
+				var cursor;
+				if(index < $s.boardSize) {
+					console.log("bottom left corner");
+					cursor = index;
+					for(var i = 0; i <= index; i++) {
+						console.log("turn square", ($s.boardSize - i) - 1, cursor);
+						if($s.board[($s.boardSize - i) - 1][cursor] != "0") { $s.board[($s.boardSize - i) - 1][cursor] = "2"; }
+						cursor--;
+					}
+				} else {
+					console.log("top right corner");
+					cursor = index - $s.boardSize;
+					var diff = (($s.boardSize * 2) - 2) - index;
+					for(var i = 0; i <= diff; i++) {
+						cursor++;
+						console.log("turn square", i, cursor);
+						if($s.board[i][cursor] != "0") { $s.board[i][cursor] = "2"; }
+					}
+				}
+			}
+		});
 	}
 
 	function guess() {

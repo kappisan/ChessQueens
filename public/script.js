@@ -6,7 +6,7 @@ var app = angular.module('app', ['ngRoute'])
 	}]);
 
 /** 
-	CODES
+	QUEEN CODES
 	0 BLANK
 	1 QUEEN
 	2 ATTACKING QUEEN
@@ -19,6 +19,20 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 	console.log("page controller", $location.$$path);
 	$s.boardSize = 8;
 	$s.timeTaken = 0;
+
+	$s.numberQueens = 0;
+
+	function countQueens() {
+
+		$s.numberQueens = 0;
+		for(var x = 0; x < $s.boardSize; x++) {
+			for(var y = 0; y < $s.boardSize; y++) {
+				if ($s.board[x][y] === "1") {
+					$s.numberQueens++;
+				}
+			}
+		}
+	}
 
 	$s.renderBoard = function(size) {
 		size = size || $s.boardSize;
@@ -43,6 +57,7 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 			$s.board[row][column] = "1";
 		}
 		checkEntireBoard();
+		countQueens();
 	}
 
 	var start = new Date();
@@ -66,6 +81,7 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
                 showConfirmButton: false
             });
 		}
+		countQueens();
 	}
 
 	function checkEntireBoard() {
@@ -108,7 +124,6 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		var d1 = diagonal($s.board, false);
 		d1.forEach(function(string, index) {
 			var occurences = string.length - string.replace(/1/g, "").length;
-			// console.log(index, "occurences", occurences, string);
 
 			if(occurences > 1) { 
 				console.log("conflict!", index);
@@ -139,8 +154,6 @@ app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, 
 		var d2 = diagonal($s.board, true);
 		d2.forEach(function(string, index) {
 			var occurences = string.length - string.replace(/1/g, "").length;
-			// if(occurences > 1) { passed = false; }
-			console.log("d2", index, "occurences", occurences, string);
 
 			if(occurences > 1) { 
 				console.log("conflict!", index);

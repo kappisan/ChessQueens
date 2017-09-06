@@ -14,9 +14,9 @@ var app = angular.module('app', ['ngRoute'])
 
 
 // CONTROLLERS
-app.controller('PageCtrl', ['$scope', '$http', '$location', function($s, $http, $location) {
+app.controller('PageCtrl', ['$scope', function($s) {
 
-	console.log("page controller", $location.$$path);
+	console.log("page controller");
 	$s.boardSize = 8;
 	$s.timeTaken = 0;
 

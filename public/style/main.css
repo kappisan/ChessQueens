@@ -42,6 +42,10 @@ a:visited {
     text-decoration: inherit;
 }
 
+h1 {
+    margin: 0;
+}
+
 h1, h2 {
     padding: 20px 0 10px 0;
     font-family: luna;
@@ -55,16 +59,19 @@ p {
 
 .text-container {
     width: 720px;
+    margin: 40px 0 10px 0;
 }
 
 .title-bar {
-    height: 120px;
+    height: 100px;
     top: 0;
     right: 0;
     width: 100%;
     position: relative;
     background-color: #231f20;
+    color: #eee;
     z-index: 99;
+    text-align: center;
 }
 
 .solve-button {
@@ -149,10 +156,6 @@ p {
 
 .social-media-icon {
     margin: 0 20px 0 20px;
-}
-
-#footer-hr {
-    margin: 0;
 }
 
 .centered {

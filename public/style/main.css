@@ -152,6 +152,18 @@ p {
     padding: 40px;
     background-color: #231f20;
     color: #fff;
+    text-align: center;
+}
+
+#footer-section a,
+#footer-section a:link,
+#footer-section a:hover,
+#footer-section a:visited {
+    color: #fff;
+}
+
+#footer-section p {
+    margin: 20px 0;
 }
 
 .social-media-icon {

@@ -22,6 +22,7 @@ app.controller('PageCtrl', ['$scope', function($s) {
 
 	$s.numberQueens = 0;
 
+	// returns number of safe queens
 	function countQueens() {
 
 		$s.numberQueens = 0;

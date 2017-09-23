@@ -76,10 +76,19 @@ p {
 
 .solve-button {
     padding: 2px 10px;
-    margin: 20px;
+    margin: 40px 20px;
     width: 200px;
     height: 40px;
     font-size: 22px;
+    background-color: #537bbd;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+.solve-button:hover {
+    opacity: 0.8;
 }
 
 .main-logo {

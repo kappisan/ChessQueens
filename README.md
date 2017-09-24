@@ -10,6 +10,8 @@
 
 A program to solve the famous eight queens puzzle for an n by n board.
 
+Click [here](http://chess.kappisan.com) to see it in action.
+
 ## Run Locally
 
 The page is hosted on a server. To run the server locally you must have node and npm installed. If not, install them before you proceed.

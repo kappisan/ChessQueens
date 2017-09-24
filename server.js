@@ -16,4 +16,17 @@ server = app.listen(PORT);
 var host = server.address().address
 var port = server.address().port
 
-console.log("server listening on port %s", port);
+console.log("");
+console.log(" /$$                                     /$$                              ");
+console.log("| $$                                    |__/                              ");
+console.log("| $$   /$$  /$$$$$$   /$$$$$$   /$$$$$$  /$$  /$$$$$$$  /$$$$$$  /$$$$$$$ ");
+console.log("| $$  /$$/ |____  $$ /$$__  $$ /$$__  $$| $$ /$$_____/ |____  $$| $$__  $$");
+console.log("| $$$$$$/   /$$$$$$$| $$  \\ $$| $$  \\ $$| $$|  $$$$$$   /$$$$$$$| $$  \\ $$");
+console.log("| $$_  $$  /$$__  $$| $$  | $$| $$  | $$| $$ \\\____  $$ /$$__  $$| $$  | $$");
+console.log("| $$ \\  $$|  $$$$$$$| $$$$$$$/| $$$$$$$/| $$ /$$$$$$$/|  $$$$$$$| $$  | $$");
+console.log("|__/  \\\__/ \\\_______/| $$____/ | $$____/ |__/|_______/  \\\_______/|__/  |__/");
+console.log("                    | $$      | $$                                        ");
+console.log("                    | $$      | $$                                        ");
+console.log("                    |__/      |__/                                        ");
+console.log("");
+console.log("chess queens server listening on port %s", port);
